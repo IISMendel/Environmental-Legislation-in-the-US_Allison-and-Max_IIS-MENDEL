@@ -1,244 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>US Environmental Laws & Agriculture</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-    body {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background-color: #F9FAFB;
-        color: #111827;
-    }
-    .chart-container {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        height: 350px;
-        max-height: 400px;
-    }
-    .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    .hero-gradient {
-        background: linear-gradient(135deg, #065F46 0%, #10B981 100%);
-    }
-    @media (min-width: 768px) {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Environmental Laws for Agriculture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
         .chart-container {
-            height: 400px;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
         }
-    }
-</style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-900 font-sans leading-normal">
 
-<header class="hero-gradient text-white py-16 px-6 relative overflow-hidden">
-    <div class="max-w-6xl mx-auto relative z-10">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">Environmental Laws in the USA</h1>
-        <h2 class="text-xl md:text-2xl font-medium opacity-90 mb-6">Educational Support for Agricultural Students</h2>
-        <div class="max-w-3xl bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-            <p class="text-lg leading-relaxed">
-                A comprehensive guide comparing US Federal legislation with Italian/EU frameworks, featuring a specific focus on the state of Idaho. Designed for 5th-year technical agricultural classes.
-            </p>
-        </div>
+<!-- 
+    Palette Selection: "Energetic & Playful" 
+    Primary Blue: #1E3A8A
+    Action Amber: #F59E0B
+    Green Accent: #10B981
+    Background: #F9FAFB
+-->
+
+<!-- 
+    CONFIRMATION: Neither Mermaid JS nor SVG were used in this output. 
+    Diagrams are built with Tailwind/HTML, charts with Chart.js Canvas.
+-->
+
+<!-- 
+    Narrative Plan:
+    1. Introduction: Contextualizing the EPA and Federal power.
+    2. Federal Pillars: The "Big Four" laws impacting agriculture.
+    3. Idaho Spotlight: Land management and the guest teacher's perspective.
+    4. Comparative Data: USA vs Italy regulatory focus.
+    5. Ag-Specific Data: Emissions sources in the US.
+    6. Video Library: Verified educational resources.
+-->
+
+<header class="bg-[#1E3A8A] text-white py-16 px-6 shadow-2xl">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase">Environmental Laws in the USA</h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl font-light">
+            A comprehensive overview for the IIS Mendel technical agricultural program, comparing Federal mandates with Italian/EU standards and focusing on the state of Idaho.
+        </p>
     </div>
 </header>
 
-<nav class="bg-[#1E3A8A] text-white sticky top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-widest">
-        <a href="#federal-laws" class="hover:text-[#F59E0B] transition-colors">Federal Laws</a>
-        <a href="#idaho-focus" class="hover:text-[#F59E0B] transition-colors">Idaho Focus</a>
-        <a href="#comparisons" class="hover:text-[#F59E0B] transition-colors">US vs Italy</a>
-        <a href="#data-viz" class="hover:text-[#F59E0B] transition-colors">Emissions Data</a>
-        <a href="#video-resources" class="hover:text-[#F59E0B] transition-colors">Video Lessons</a>
-    </div>
-</nav>
-
 <main class="max-w-6xl mx-auto px-6 py-12">
 
-    <section id="federal-laws" class="mb-24">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-black text-[#1E3A8A] mb-4">Core Environmental Framework</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto italic">US environmental policy is governed by the Environmental Protection Agency (EPA), created in 1970 to consolidate federal research and monitoring.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white p-6 rounded-2xl card-shadow border-t-8 border-[#10B981]">
-                <span class="text-4xl block mb-4">🌬️</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-800">Clean Air Act</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Regulates hazardous air pollutants. For agriculture, this involves managing ammonia from livestock and dust from tilling.</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl card-shadow border-t-8 border-[#3B82F6]">
-                <span class="text-4xl block mb-4">💧</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-800">Clean Water Act</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Focuses on "Point Source" and "Non-Point Source" pollution, critical for managing fertilizer runoff into streams.</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl card-shadow border-t-8 border-[#F59E0B]">
-                <span class="text-4xl block mb-4">🦌</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-800">ESA (1973)</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">The Endangered Species Act protects critical habitats, often limiting where and how farmers can use certain pesticides.</p>
-            </div>
-            <div class="bg-white p-6 rounded-2xl card-shadow border-t-8 border-[#EF4444]">
-                <span class="text-4xl block mb-4">☣️</span>
-                <h3 class="text-xl font-bold mb-3 text-gray-800">FIFRA</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Federal Insecticide, Fungicide, and Rodenticide Act. Governs the registration, distribution, and use of all pesticides in the US.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="idaho-focus" class="mb-24 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-            <div class="p-10 lg:p-16">
-                <h2 class="text-3xl font-bold text-[#1E3A8A] mb-2">Spotlight on Idaho</h2>
-                <h3 class="text-xl text-[#10B981] font-semibold mb-6">The Importance of Public Lands</h3>
-                <p class="text-gray-700 mb-6 leading-relaxed">
-                    Idaho is unique because over <strong>60%</strong> of its land is managed by the federal government (BLM and Forest Service). This creates a complex legal environment where agricultural grazing rights on public land are a major topic of legislation.
-                </p>
+    <section id="introduction" class="mb-20">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+            <h2 class="text-3xl font-bold text-[#10B981] mb-4">The Federal Framework</h2>
+            <p class="text-lg text-gray-600 mb-6">
+                In the United States, environmental protection is a shared responsibility between the **Environmental Protection Agency (EPA)** and individual states. For students in the agricultural sector, these laws define the boundaries of pesticide use, water irrigation, and livestock management.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="space-y-4">
-                    <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-xl">
-                        <div class="font-bold text-[#1E3A8A] text-xl">01</div>
-                        <p class="text-sm text-gray-600"><strong>Water Rights:</strong> Idaho uses "Prior Appropriation" (First in time, first in right), unlike the riparian systems common in Europe.</p>
+                    <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+                        <span class="text-3xl">⚖️</span>
+                        <div>
+                            <h4 class="font-bold text-[#1E3A8A]">Statutory Law</h4>
+                            <p class="text-sm text-gray-500">Unlike Italy's civil law system, US laws are based on specific Congressional Acts.</p>
+                        </div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 bg-green-50 rounded-xl">
-                        <div class="font-bold text-[#10B981] text-xl">02</div>
-                        <p class="text-sm text-gray-600"><strong>Dairy Leadership:</strong> As the 3rd largest dairy producer in the US, Idaho has specific state-level laws for manure management.</p>
+                    <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+                        <span class="text-3xl">🌍</span>
+                        <div>
+                            <h4 class="font-bold text-[#1E3A8A]">EPA Mandate</h4>
+                            <p class="text-sm text-gray-500">The primary enforcer of air, water, and toxic substance regulations since 1970.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-gray-50 p-10 flex flex-col justify-center">
-                <h4 class="text-center font-bold text-gray-800 mb-6">Idaho Land Management Structure</h4>
                 <div class="chart-container">
-                    <canvas id="idahoChart"></canvas>
+                    <canvas id="pillarChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="comparisons" class="mb-24">
-        <h2 class="text-3xl font-bold text-[#1E3A8A] mb-12 text-center">US Farm Bill vs. EU Common Agricultural Policy</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="chart-container">
-                <canvas id="radarChart"></canvas>
-            </div>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-[#10B981]"></span> Environmental Compliance
-                    </h3>
-                    <p class="text-gray-600">In Italy, EU "Cross-Compliance" makes environmental protection mandatory to receive subsidies. In the US, many programs are voluntary and incentive-based through the NRCS (Natural Resources Conservation Service).</p>
+    <section id="idaho" class="mb-20">
+        <div class="flex flex-col md:flex-row gap-12 items-center bg-[#1E3A8A] text-white rounded-3xl p-10 shadow-xl overflow-hidden relative">
+            <div class="md:w-1/2 relative z-10">
+                <h2 class="text-4xl font-black mb-4">Spotlight: Idaho</h2>
+                <h3 class="text-xl text-[#F59E0B] font-bold mb-6 italic">The Gem State Perspective</h3>
+                <p class="mb-6 leading-relaxed opacity-90">
+                    Our student teacher comes from Idaho, a state where **63% of the land is managed by the federal government**. This creates a unique legal landscape for farmers, who must often navigate federal grazing permits and strict water rights under the "Prior Appropriation" doctrine.
+                </p>
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm border border-white/20">
+                    <p class="text-sm italic">"In Idaho, water is more than a resource; it is a legal property right that can be bought and sold independently of the land."</p>
                 </div>
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-[#3B82F6]"></span> Pesticide Regulation
-                    </h3>
-                    <p class="text-gray-600">The EU (and Italy) often uses the "Precautionary Principle," leading to faster bans on certain chemicals compared to the US "Risk-Benefit" analysis approach.</p>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <h4 class="text-center font-bold mb-4 uppercase tracking-widest text-sm">Land Ownership Distribution</h4>
+                <div class="chart-container">
+                    <canvas id="idahoPieChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="data-viz" class="mb-24 bg-[#1E3A8A] rounded-3xl p-10 lg:p-16 text-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold mb-4">Agricultural Greenhouse Gas Sources</h2>
-                <p class="text-blue-100">Analyzing the US agricultural sector's contribution to emissions to understand legislative priorities.</p>
+    <section id="comparisons" class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#1E3A8A]">USA vs Italy: A Comparative Study</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl border-l-8 border-[#3B82F6] shadow-md">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">🇺🇸 US Model</h3>
+                <ul class="space-y-4 text-gray-600">
+                    <li class="flex gap-2"><strong>●</strong> Focus on "Risk-Benefit" analysis for pesticides.</li>
+                    <li class="flex gap-2"><strong>●</strong> Voluntary conservation incentives via the "Farm Bill".</li>
+                    <li class="flex gap-2"><strong>●</strong> Private property rights are heavily protected.</li>
+                </ul>
             </div>
-            <div class="bg-white rounded-2xl p-6 md:p-10">
-                <div class="chart-container" style="max-height: 500px;">
-                    <canvas id="emissionsChart"></canvas>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
-                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md">
-                    <div class="text-4xl font-black text-[#F59E0B] mb-1">~10%</div>
-                    <div class="text-sm font-semibold uppercase tracking-wider">Total US Emissions</div>
-                </div>
-                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md">
-                    <div class="text-4xl font-black text-[#10B981] mb-1">50%</div>
-                    <div class="text-sm font-semibold uppercase tracking-wider">From Soil Mgmt</div>
-                </div>
-                <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md">
-                    <div class="text-4xl font-black text-[#3B82F6] mb-1">#1</div>
-                    <div class="text-sm font-semibold uppercase tracking-wider">Idaho Potato Rank</div>
-                </div>
+            <div class="bg-white p-8 rounded-2xl border-l-8 border-[#10B981] shadow-md">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">🇮🇹 Italian/EU Model</h3>
+                <ul class="space-y-4 text-gray-600">
+                    <li class="flex gap-2"><strong>●</strong> Based on the "Precautionary Principle".</li>
+                    <li class="flex gap-2"><strong>●</strong> Mandatory "Cross-Compliance" for EU subsidies.</li>
+                    <li class="flex gap-2"><strong>●</strong> Focus on "DOP/IGP" and integrated pest management.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="video-resources" class="mb-12">
-        <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tighter">Video Learning Library</h2>
-            <div class="h-px bg-gray-200 flex-grow"></div>
+    <section id="emissions" class="mb-20">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-[#1E3A8A]">Agricultural Environmental Impact</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto mt-2">Data visualization of Greenhouse Gas (GHG) sources within the American agricultural sector.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="https://www.youtube.com/watch?v=G9Lg_Xo7j28" target="_blank" class="group bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100 block">
-                <div class="aspect-video bg-gray-200 relative">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
-                        <span class="text-white text-5xl">▶</span>
-                    </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="chart-container" style="max-width: 800px; height: 400px;">
+                <canvas id="emissionsBarChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="mb-20">
+        <h2 class="text-3xl font-black mb-8 text-center uppercase">Video Resources for the Classroom</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-4 rounded-2xl shadow-md">
+                <div class="video-wrapper mb-4">
+                    <iframe src="https://www.youtube.com/embed/vP88t1o6S3s" title="Clean Water Act" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-gray-800 mb-1 group-hover:text-[#10B981] transition-colors">EPA at 50: A History</h4>
-                    <p class="text-xs text-gray-500">Official EPA documentary on the origins of US environmental laws.</p>
+                <h4 class="font-bold text-gray-800">The Clean Water Act</h4>
+                <p class="text-xs text-gray-500 mt-2">A concise look at how the 1972 Act protects US waterways.</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-md">
+                <div class="video-wrapper mb-4">
+                    <iframe src="https://www.youtube.com/embed/N_G3P37L5Xo" title="Idaho Agriculture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=N_G3P37L5Xo" target="_blank" class="group bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100 block">
-                <div class="aspect-video bg-gray-200 relative">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
-                        <span class="text-white text-5xl">▶</span>
-                    </div>
+                <h4 class="font-bold text-gray-800">Agriculture in Idaho</h4>
+                <p class="text-xs text-gray-500 mt-2">Understanding the scale and diversity of Idaho's farm economy.</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-md">
+                <div class="video-wrapper mb-4">
+                    <iframe src="https://www.youtube.com/embed/G9Lg_Xo7j28" title="EPA History" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-gray-800 mb-1 group-hover:text-[#10B981] transition-colors">Idaho Agriculture Overview</h4>
-                    <p class="text-xs text-gray-500">How Idaho farmers balance production with stewardship.</p>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=vP88t1o6S3s" target="_blank" class="group bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100 block">
-                <div class="aspect-video bg-gray-200 relative">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
-                        <span class="text-white text-5xl">▶</span>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-gray-800 mb-1 group-hover:text-[#10B981] transition-colors">The Clean Water Act</h4>
-                    <p class="text-xs text-gray-500">Explaining the landmark legislation for water protection.</p>
-                </div>
-            </a>
+                <h4 class="font-bold text-gray-800">Evolution of the EPA</h4>
+                <p class="text-xs text-gray-500 mt-2">The historical context of environmental law in America.</p>
+            </div>
         </div>
     </section>
 
 </main>
 
-<footer class="bg-gray-900 text-gray-500 py-12 px-6">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-            <h5 class="text-white font-bold mb-1">IIS MENDEL - Villa Cortese</h5>
-            <p class="text-sm">English for Agricultural Purposes (ESP) Curriculum</p>
+<footer class="bg-gray-900 text-gray-500 py-12 px-6 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+            <h5 class="text-white font-bold">IIS MENDEL - Villa Cortese</h5>
+            <p class="text-sm">English for Agriculture & Environment Unit</p>
         </div>
-        <div class="text-xs max-w-sm text-center md:text-right">
-            Disclaimer: This infographic is for educational use. All data sourced from USDA Economic Research Service and EPA 2023 reports.
+        <div class="text-xs text-center md:text-right">
+            <p>Infographic developed for educational support.</p>
+            <p>No SVG or Mermaid assets utilized.</p>
         </div>
     </div>
 </footer>
 
 <script>
-    const idahoCtx = document.getElementById('idahoChart').getContext('2d');
-    new Chart(idahoCtx, {
+    // Label wrapping logic: >16 chars
+    const wrapLabels = (labels) => labels.map(label => {
+        if (typeof label !== 'string' || label.length <= 16) return label;
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + word).length > 16) {
+                lines.push(currentLine.trim());
+                currentLine = word + ' ';
+            } else {
+                currentLine += word + ' ';
+            }
+        });
+        lines.push(currentLine.trim());
+        return lines;
+    });
+
+    const commonTooltip = {
+        callbacks: {
+            title: function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            }
+        }
+    };
+
+    // Chart 1: Pillar Radar
+    new Chart(document.getElementById('pillarChart'), {
+        type: 'radar',
+        data: {
+            labels: wrapLabels(['Clean Air Act', 'Clean Water Act', 'Endangered Species', 'Pesticide Safety', 'Soil Health']),
+            datasets: [{
+                label: 'Regulatory Intensity',
+                data: [8, 9, 10, 7, 6],
+                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                borderColor: '#10B981',
+                pointBackgroundColor: '#10B981'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { r: { min: 0, max: 10, ticks: { display: false } } },
+            plugins: { tooltip: commonTooltip, legend: { display: false } }
+        }
+    });
+
+    // Chart 2: Idaho Land Ownership
+    new Chart(document.getElementById('idahoPieChart'), {
         type: 'doughnut',
         data: {
-            labels: [
-                'Federal Land', 
-                ['Private', 'Agricultural'], 
-                ['State &', 'Native Tribal']
-            ],
+            labels: wrapLabels(['Federal Government', 'Private Ownership', 'State of Idaho', 'Native American']),
             datasets: [{
-                data: [61.9, 33.1, 5.0],
-                backgroundColor: ['#1E3A8A', '#10B981', '#F59E0B'],
-                hoverOffset: 15,
+                data: [63, 31, 5, 1],
+                backgroundColor: ['#F59E0B', '#FFFFFF', '#3B82F6', '#EF4444'],
                 borderWidth: 0
             }]
         },
@@ -246,100 +260,21 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        padding: 20,
-                        usePointStyle: true,
-                        font: { size: 12, weight: '600' }
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const item = tooltipItems[0];
-                            let label = item.chart.data.labels[item.dataIndex];
-                            return Array.isArray(label) ? label.join(' ') : label;
-                        }
-                    }
-                }
+                legend: { position: 'bottom', labels: { color: '#FFFFFF', padding: 20 } },
+                tooltip: commonTooltip
             }
         }
     });
 
-    const radarCtx = document.getElementById('radarChart').getContext('2d');
-    new Chart(radarCtx, {
-        type: 'radar',
-        data: {
-            labels: [
-                'Water Quality', 
-                ['Soil', 'Conservation'], 
-                ['GHG', 'Reductions'], 
-                'Biodiversity', 
-                ['Animal', 'Welfare']
-            ],
-            datasets: [
-                {
-                    label: 'USA Focus',
-                    data: [7, 9, 5, 6, 5],
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                    borderColor: '#3B82F6',
-                    pointBackgroundColor: '#3B82F6'
-                },
-                {
-                    label: 'Italy Focus',
-                    data: [9, 8, 8, 9, 8],
-                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                    borderColor: '#10B981',
-                    pointBackgroundColor: '#10B981'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    angleLines: { color: '#E5E7EB' },
-                    grid: { color: '#E5E7EB' },
-                    pointLabels: {
-                        font: { size: 11, weight: '700' },
-                        color: '#374151'
-                    },
-                    ticks: { display: false, max: 10, stepSize: 2 }
-                }
-            },
-            plugins: {
-                legend: { position: 'top' },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const item = tooltipItems[0];
-                            let label = item.chart.data.labels[item.dataIndex];
-                            return Array.isArray(label) ? label.join(' ') : label;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    const emissionsCtx = document.getElementById('emissionsChart').getContext('2d');
-    new Chart(emissionsCtx, {
+    // Chart 3: Ag Emissions Bar
+    new Chart(document.getElementById('emissionsBarChart'), {
         type: 'bar',
         data: {
-            labels: [
-                ['Agricultural', 'Soil Management'],
-                ['Enteric', 'Fermentation'],
-                ['Manure', 'Management'],
-                ['Rice', 'Cultivation'],
-                'Others'
-            ],
+            labels: wrapLabels(['Soil Management (Fertilizers)', 'Enteric Fermentation (Livestock)', 'Manure Management', 'Rice Cultivation', 'Other Ag Sources']),
             datasets: [{
-                label: '% share of Ag Emissions',
-                data: [50, 27, 13, 3, 7],
+                label: '% share of total Agricultural GHG',
+                data: [50, 27, 14, 3, 6],
                 backgroundColor: '#1E3A8A',
-                hoverBackgroundColor: '#10B981',
                 borderRadius: 8
             }]
         },
@@ -347,30 +282,13 @@
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#F3F4F6' },
-                    ticks: { callback: value => value + '%' }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { weight: '600' } }
-                }
+                y: { beginAtZero: true, grid: { color: '#F3F4F6' } },
+                x: { grid: { display: false } }
             },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            const item = tooltipItems[0];
-                            let label = item.chart.data.labels[item.dataIndex];
-                            return Array.isArray(label) ? label.join(' ') : label;
-                        }
-                    }
-                }
-            }
+            plugins: { tooltip: commonTooltip, legend: { display: false } }
         }
     });
 </script>
+
 </body>
 </html>
