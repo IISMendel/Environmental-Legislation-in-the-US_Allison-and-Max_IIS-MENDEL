@@ -3,331 +3,454 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Environmental Legislation: USA, Idaho & Italy</title>
+    <title>Integrated Agriculture & Environment Module | IIS MENDEL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Chosen Palette: "Professional Agri-Blue" (#1E3A8A, #10B981, #F59E0B) -->
+    <!-- Application Structure Plan: 
+         1. Foundations (4 Tabs): Management, Breeding, Welfare, PDO Model.
+         2. Ecosystem Analysis: Interactive nodes for metabolic inputs/outputs.
+         3. Global Comparison: Discursive bilingual narrative (Idaho vs Lombardy).
+         4. Legislation & Stats: Radar chart for laws and Bar chart for GHG emissions.
+         5. Video Gallery: 4 interactive cards with the specific title/content inversion requested.
+         This is designed as a master-page for the 5th-year curriculum at IIS Mendel.
+    -->
+    <!-- CONFIRMATION: NO SVG image files used. NO Mermaid JS used. Lucide icons used via CDN. -->
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 800px;
+            margin: auto;
             height: 350px;
-            max-height: 400px;
-        }
-        .video-box {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
+            background: #ffffff;
             border-radius: 1rem;
-            background: #000;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
         }
-        .video-box iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+
+        .tab-btn { transition: all 0.3s ease; border-bottom: 3px solid transparent; }
+        .tab-active { color: #1E3A8A; border-bottom: 3px solid #F59E0B; font-weight: 800; background-color: #eff6ff; }
+
+        .translation-box {
+            font-style: italic;
+            color: #64748b;
+            border-left: 4px solid #F59E0B;
+            padding-left: 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            background: #f1f5f9;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+
+        .system-node { transition: all 0.2s ease; border: 1px solid #e2e8f0; background: #ffffff; }
+        .system-node:hover, .system-node.active { border-color: #10B981; transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); background-color: #ecfdf5; }
+
+        .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; background: #000; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.5); }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-900 font-sans selection:bg-[#F59E0B] selection:text-white">
+<body class="antialiased selection:bg-amber-200">
 
-<!-- 
-    Palette Choice: "Energetic & Playful"
-    Emerald: #10B981 | Royal: #1E3A8A | Amber: #F59E0B 
-    CONFIRMATION: No SVG or Mermaid JS used.
--->
-
-<header class="bg-[#1E3A8A] text-white py-20 px-6 shadow-2xl relative overflow-hidden">
-    <div class="max-w-6xl mx-auto relative z-10">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight uppercase">Environmental Laws <br><span class="text-[#F59E0B]">in the USA</span></h1>
-        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl font-light leading-relaxed">
-            Technical Agricultural Institute (IIS Mendel) - 5th Year Curriculum. 
-            A comparative study of Federal Pillars, Idaho State specifics, and EU/Italian parallels.
-        </p>
-    </div>
-    <div class="absolute right-0 bottom-0 opacity-10 text-[300px] leading-none select-none">🚜</div>
-</header>
-
-<main class="max-w-6xl mx-auto px-6 py-16 space-y-28">
-
-    <!-- Section: Intro -->
-    <section id="policy">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl font-bold text-[#1E3A8A] mb-6">Legislative Foundations</h2>
-                <p class="text-lg text-slate-600 leading-relaxed mb-8">
-                    In the United States, environmental protection is governed by a robust framework of **Federal Acts**. For our students in Villa Cortese, it is essential to understand that while Italy follows EU directives, the US relies on the **EPA (Environmental Protection Agency)** to enforce national standards that directly impact farm operations, from pesticide drift to manure management.
+    <!-- Header / Hero -->
+    <header class="bg-[#1E3A8A] text-white py-16 px-6 shadow-2xl relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-emerald-500 p-2 rounded-lg"><i data-lucide="sprout" class="w-6 h-6"></i></span>
+                    <h1 class="text-xs font-bold tracking-[0.2em] uppercase text-blue-200">IIS Mendel - Villa Cortese</h1>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter">Livestock & <span class="text-[#F59E0B]">Environment</span></h2>
+                <p class="text-lg text-blue-100 max-w-2xl font-light">
+                    Environmental Legislation, Technical Management, and Regional Case Studies.
+                    Curated for English for Agricultural Purposes (ESP).
                 </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-b-4 border-[#10B981]">
-                        <h4 class="font-bold text-[#1E3A8A]">EPA</h4>
-                        <p class="text-xs text-slate-500 uppercase font-bold tracking-widest">Federal Enforcer</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-b-4 border-[#F59E0B]">
-                        <h4 class="font-bold text-[#1E3A8A]">USDA</h4>
-                        <p class="text-xs text-slate-500 uppercase font-bold tracking-widest">Conservation Aid</p>
-                    </div>
-                </div>
             </div>
-            <div class="bg-white p-8 rounded-3xl shadow-xl">
-                <h4 class="text-center font-bold text-slate-800 mb-6 uppercase">Federal Regulatory Priority Matrix</h4>
-                <div class="chart-container">
-                    <canvas id="radarLaws"></canvas>
-                </div>
-            </div>
+            <div class="hidden lg:block opacity-10 text-[200px] leading-none select-none">🚜</div>
         </div>
-    </section>
+    </header>
 
-    <!-- Section: Idaho Spotlight -->
-    <section id="idaho" class="bg-[#10B981] rounded-[3rem] p-10 lg:p-20 text-white shadow-2xl relative">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1">
-                <div class="chart-container">
-                    <canvas id="idahoDoughnut"></canvas>
+    <main class="max-w-6xl mx-auto px-6 py-16 space-y-28">
+
+        <!-- SECTION 1: Foundations (Combined from Images & Text) -->
+        <section id="foundations" class="scroll-mt-24">
+            <div class="mb-10 flex items-center gap-4">
+                <h3 class="text-3xl font-black text-slate-900 uppercase tracking-tight">01. Scientific Foundations</h3>
+                <div class="h-1 flex-grow bg-slate-200 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="flex flex-wrap bg-slate-50 border-b border-slate-200">
+                    <button onclick="switchTab('mgt')" id="btn-mgt" class="tab-btn flex-1 py-5 px-4 font-bold text-xs sm:text-sm tab-active">MANAGEMENT</button>
+                    <button onclick="switchTab('brd')" id="btn-brd" class="tab-btn flex-1 py-5 px-4 font-bold text-xs sm:text-sm text-slate-500">BREEDING</button>
+                    <button onclick="switchTab('welf')" id="btn-welf" class="tab-btn flex-1 py-5 px-4 font-bold text-xs sm:text-sm text-slate-500">WELFARE</button>
+                    <button onclick="switchTab('pdo')" id="btn-pdo" class="tab-btn flex-1 py-5 px-4 font-bold text-xs sm:text-sm text-slate-500">PDO (DOP)</button>
+                </div>
+
+                <div class="p-8 md:p-12">
+                    <!-- Management -->
+                    <div id="pane-mgt" class="fade-in space-y-6">
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <h4 class="text-2xl font-bold text-blue-900">Technical Optimization</h4>
+                                <p class="text-slate-600 leading-relaxed">Precision farming matches diets to animal needs, improving the **Feed Conversion Ratio (FCR)** and reducing nutrient waste in the environment.</p>
+                                <div class="translation-box">L'agricoltura di precisione adatta le diete ai bisogni animali, migliorando l'indice di conversione (FCR) e riducendo gli sprechi nel suolo.</div>
+                            </div>
+                            <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 flex items-center gap-6">
+                                <i data-lucide="settings" class="w-12 h-12 text-blue-600"></i>
+                                <p class="text-sm font-semibold text-blue-900">Modern facilities use climatized buildings to maintain vigor and minimize physiological stress.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breeding -->
+                    <div id="pane-brd" class="hidden fade-in space-y-6">
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <h4 class="text-2xl font-bold text-emerald-800">Genetics for Ecology</h4>
+                                <p class="text-slate-600 leading-relaxed">We select for <strong>efficiency</strong> and <strong>disease resistance</strong>. Reducing mortality and increasing longevity decreases the carbon cost per kg of product.</p>
+                                <div class="translation-box">Selezioniamo per efficienza e resistenza alle malattie. Ridurre la mortalità e aumentare la longevità abbassa il costo di carbonio per kg di prodotto.</div>
+                            </div>
+                            <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+                                <h5 class="font-bold text-emerald-900 mb-2 italic">Breeding Goals:</h5>
+                                <ul class="text-sm text-emerald-700 space-y-1">
+                                    <li>• Feed Intake Efficiency</li>
+                                    <li>• Heat Tolerance</li>
+                                    <li>• Methane Emission Reduction</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Welfare -->
+                    <div id="pane-welf" class="hidden fade-in space-y-6">
+                        <h4 class="text-2xl font-bold text-amber-800">Animal Welfare Pillars</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                            <div class="p-4 bg-amber-50 rounded-xl text-center border border-amber-100">
+                                <p class="text-[10px] font-bold uppercase mb-1">Hunger</p>
+                                <i data-lucide="cup-soda" class="w-6 h-6 mx-auto text-amber-600"></i>
+                            </div>
+                            <div class="p-4 bg-amber-50 rounded-xl text-center border border-amber-100">
+                                <p class="text-[10px] font-bold uppercase mb-1">Comfort</p>
+                                <i data-lucide="cloud-sun" class="w-6 h-6 mx-auto text-amber-600"></i>
+                            </div>
+                            <div class="p-4 bg-amber-50 rounded-xl text-center border border-amber-100">
+                                <p class="text-[10px] font-bold uppercase mb-1">Health</p>
+                                <i data-lucide="stethoscope" class="w-6 h-6 mx-auto text-amber-600"></i>
+                            </div>
+                            <div class="p-4 bg-amber-50 rounded-xl text-center border border-amber-100">
+                                <p class="text-[10px] font-bold uppercase mb-1">Behavior</p>
+                                <i data-lucide="smile" class="w-6 h-6 mx-auto text-amber-600"></i>
+                            </div>
+                            <div class="p-4 bg-amber-50 rounded-xl text-center border border-amber-100">
+                                <p class="text-[10px] font-bold uppercase mb-1">Mental</p>
+                                <i data-lucide="shield" class="w-6 h-6 mx-auto text-amber-600"></i>
+                            </div>
+                        </div>
+                        <div class="translation-box">Le Cinque Libertà (Welfare) non sono solo etiche, ma garantiscono produzioni di alta qualità e minor stress biologico.</div>
+                    </div>
+
+                    <!-- PDO -->
+                    <div id="pane-pdo" class="hidden fade-in space-y-6">
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <h4 class="text-2xl font-bold text-amber-900">The PDO / DOP Philosophy</h4>
+                                <p class="text-slate-600 leading-relaxed">By linking quality to a specific territory, PDO models preserve rural landscapes and enforce ecological standards that mass production often ignores.</p>
+                                <div class="translation-box">Legando la qualità al territorio, il modello DOP preserva il paesaggio rurale e impone standard ecologici spesso ignorati dalla produzione di massa.</div>
+                            </div>
+                            <div class="bg-amber-100 p-8 rounded-2xl flex flex-col justify-center text-center">
+                                <i data-lucide="map" class="w-10 h-10 mx-auto text-amber-700 mb-2"></i>
+                                <p class="font-black text-amber-900">CULTURAL ASSET</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="order-1 lg:order-2">
-                <h2 class="text-4xl font-black mb-6">Spotlight: Idaho Agriculture</h2>
-                <p class="text-emerald-50 mb-8 text-lg leading-relaxed">
-                    Our student teacher joins us from **Idaho**, a state where nature and industry are deeply intertwined. Unlike Italy, Idaho's environmental challenges are shaped by massive federal land holdings (63%) and a strict "First in time, first in right" water doctrine.
-                </p>
+        </section>
+
+        <!-- SECTION 2: Discursive Narrative -->
+        <section id="comparison">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="space-y-8">
+                    <h3 class="text-3xl font-black text-slate-900 uppercase">02. Regional Realities</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="glass-card p-8 rounded-3xl border-l-8 border-blue-600">
+                            <h4 class="text-xl font-bold text-blue-900 mb-2">Idaho: Scale & Desert Survival</h4>
+                            <p class="text-slate-700">In Idaho, water is a precious commodity. Massive herds (CAFOs) rely on complex irrigation systems to produce alfalfa in a high-desert environment. The legal focus is on Water Rights.</p>
+                            <div class="translation-box">In Idaho, l'acqua è una risorsa scarsa. Enormi mandrie dipendono da sistemi di irrigazione per produrre foraggio in un ambiente desertico. Il focus legale è sui Diritti Idrici.</div>
+                        </div>
+
+                        <div class="glass-card p-8 rounded-3xl border-l-8 border-emerald-600">
+                            <h4 class="text-xl font-bold text-emerald-900 mb-2">Lombardy: Intensive Precision</h4>
+                            <p class="text-slate-700">In the Po Valley, the challenge is nutrient loading. High animal density must comply with the EU Nitrates Directive to protect groundwater from nitrogen surplus.</p>
+                            <div class="translation-box">In Pianura Padana, la sfida è il carico di nutrienti. L'alta densità animale deve rispettare la Direttiva Nitrati UE per proteggere le falde dall'eccesso di azoto.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl shadow-xl space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-slate-800 uppercase text-xs">Structural Comparison</h4>
+                        <select id="metric-select" onchange="updateComparisonChart()" class="bg-slate-50 border border-slate-200 text-xs font-bold rounded p-1">
+                            <option value="herd">Herd Size (Head)</option>
+                            <option value="density">LSU Density (Units/ha)</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Legislation & GHG Emissions (Combined) -->
+        <section id="legislation" class="space-y-12">
+            <div class="flex items-center gap-4">
+                <h3 class="text-3xl font-black text-slate-900 uppercase">03. Policy & Emissions</h3>
+                <div class="h-1 flex-grow bg-slate-200 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-slate-900 p-10 rounded-[3rem] text-white space-y-8 shadow-2xl">
+                    <div>
+                        <h4 class="text-2xl font-black text-amber-500 uppercase">Legislative Radar</h4>
+                        <p class="text-slate-400 text-sm mt-1">Federal priorities in the United States.</p>
+                    </div>
+                    <div class="chart-container !bg-transparent !border-0">
+                        <canvas id="radarLaws"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl space-y-8">
+                    <div>
+                        <h4 class="text-2xl font-black text-blue-900 uppercase">US Ag Emission Profile</h4>
+                        <p class="text-slate-500 text-sm mt-1">Greenhouse gas sources by percentage (Source: EPA).</p>
+                    </div>
+                    <div class="chart-container !border-0">
+                        <canvas id="emissionsBar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Multimedia Gallery (FULL 4 ITEMS) -->
+        <section id="media">
+            <div class="flex items-center gap-6 mb-12">
+                <h3 class="text-3xl font-black text-slate-800 uppercase">04. Video Library</h3>
+                <div class="h-1 flex-grow bg-slate-200 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Swapped Card 1 -->
                 <div class="space-y-4">
-                    <div class="glass-card p-6 rounded-2xl text-slate-900">
-                        <h4 class="font-bold text-emerald-800 mb-2">Water Property Rights</h4>
-                        <p class="text-sm">In Idaho, water is a private property right that can be traded, which is essential for the irrigation of the famous Idaho potatoes.</p>
+                    <div class="video-box shadow-xl hover:scale-[1.02] transition-transform">
+                        <iframe src="https://www.youtube.com/embed/eFNnFoG_Q2g" title="History of the EPA" allowfullscreen></iframe>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl text-slate-900">
-                        <h4 class="font-bold text-emerald-800 mb-2">Public Land Management</h4>
-                        <p class="text-sm">Ranchers must navigate complex Federal Bureau of Land Management (BLM) rules to graze cattle on public territories.</p>
+                    <div>
+                        <h4 class="font-bold text-xl text-[#1E3A8A]">1. Idaho's Agricultural Heart</h4>
+                        <p class="text-sm text-slate-500 italic">Content context: Federal History & Regulation (EPA Legacy).</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Clean Water Act -->
+                <div class="space-y-4">
+                    <div class="video-box shadow-xl hover:scale-[1.02] transition-transform">
+                        <iframe src="https://www.youtube.com/embed/OYMf9zJikVU" title="Clean Water Act" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-[#1E3A8A]">2. The Clean Water Act (1972)</h4>
+                        <p class="text-sm text-slate-500 italic">Exploring the pivotal law for American water bodies.</p>
+                    </div>
+                </div>
+
+                <!-- Swapped Card 3 -->
+                <div class="space-y-4">
+                    <div class="video-box shadow-xl hover:scale-[1.02] transition-transform">
+                        <iframe src="https://www.youtube.com/embed/OscCl8l9jLg" title="Idaho Heart" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-[#1E3A8A]">3. Environmental History & EPA</h4>
+                        <p class="text-sm text-slate-500 italic">Content context: Visualizing Idaho's Productivity (Gem State Overview).</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Environmental Principles -->
+                <div class="space-y-4">
+                    <div class="video-box shadow-xl hover:scale-[1.02] transition-transform">
+                        <iframe src="https://www.youtube.com/embed/2njn71TqkjA" title="US Env Law Principles" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-[#1E3A8A]">4. US Environmental Principles</h4>
+                        <p class="text-sm text-slate-500 italic">Theoretical framework of American natural resource law.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Section: Comparison -->
-    <section id="comparison">
-        <h2 class="text-3xl font-black text-center mb-16 text-[#1E3A8A] uppercase tracking-tighter">USA (Statutes) vs. Italy (Directives)</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="bg-white p-10 rounded-3xl shadow-md border-t-8 border-[#1E3A8A]">
-                <h3 class="text-2xl font-bold mb-6 text-blue-900">US Agricultural Policy</h3>
-                <ul class="space-y-4 text-slate-600">
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#F59E0B]">★</span>
-                        <span>**Risk-Benefit Analysis**: Economic gain is weighed against environmental risk.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#F59E0B]">★</span>
-                        <span>**Voluntary Programs**: The Farm Bill pays farmers for "Green" actions (EQIP).</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#F59E0B]">★</span>
-                        <span>**Statutory Focus**: Laws target specific points (Clean Water Act, FIFRA).</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="bg-white p-10 rounded-3xl shadow-md border-t-8 border-[#10B981]">
-                <h3 class="text-2xl font-bold mb-6 text-emerald-900">Italian/EU Policy</h3>
-                <ul class="space-y-4 text-slate-600">
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#10B981]">●</span>
-                        <span>**Precautionary Principle**: Substances are banned if a risk is suspected.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#10B981]">●</span>
-                        <span>**Cross-Compliance**: PAC funds are only paid if ecological rules are met.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-[#10B981]">●</span>
-                        <span>**Integrated Directives**: Broad frameworks like the Nitrate Directive.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <!-- Section: Emissions -->
-    <section id="emissions">
-        <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-800">US Agricultural Emission Profile</h2>
-                <p class="text-slate-500 max-w-xl mx-auto mt-2">Where do greenhouse gases come from in the American farm sector? (Source: EPA 2025)</p>
+    <footer class="bg-slate-950 text-slate-500 py-16 px-6 border-t-8 border-[#F59E0B]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <h5 class="text-white font-black text-2xl tracking-tighter uppercase">IIS MENDEL</h5>
+                <p class="text-sm mt-1">Villa Cortese - Technical Agricultural Institute</p>
+                <p class="text-xs text-slate-600 mt-4 italic">Integrated ESP module for exchange programs.</p>
             </div>
-            <div class="chart-container" style="max-width: 900px; height: 450px;">
-                <canvas id="emissionsBar"></canvas>
+            <div class="flex items-center gap-4">
+                <i data-lucide="globe" class="w-6 h-6"></i>
+                <i data-lucide="award" class="w-6 h-6"></i>
+                <i data-lucide="book-open" class="w-6 h-6"></i>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <!-- Section: Video Library -->
-    <section id="multimedia">
-        <div class="flex items-center gap-6 mb-12">
-            <h2 class="text-4xl font-black text-slate-800 uppercase tracking-widest">Video Gallery</h2>
-            <div class="h-1 flex-grow bg-slate-200 rounded-full"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Link 1: History of EPA -->
-            <div class="space-y-4">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/eFNnFoG_Q2g" title="History of the EPA" allowfullscreen></iframe>
-                </div>
-                <h4 class="font-bold text-xl text-[#1E3A8A]">1. The Birth of the EPA</h4>
-                <p class="text-sm text-slate-500">Historical perspective on how US environmental laws were born in 1970.</p>
-            </div>
-            <!-- Link 2: Clean Water Act (NEW LINK) -->
-            <div class="space-y-4">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/OYMf9zJikVU" title="Clean Water Act Explained" allowfullscreen></iframe>
-                </div>
-                <h4 class="font-bold text-xl text-[#1E3A8A]">2. The Clean Water Act (1972)</h4>
-                <p class="text-sm text-slate-500">A detailed look at the law that revolutionized water protection in the US.</p>
-            </div>
-            <!-- Link 3: Idaho Ag -->
-            <div class="space-y-4">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/OscCl8l9jLg" title="Idaho Agriculture Overview" allowfullscreen></iframe>
-                </div>
-                <h4 class="font-bold text-xl text-[#1E3A8A]">3. Idaho's Agricultural Heart</h4>
-                <p class="text-sm text-slate-500">Exploring the landscapes and productivity of the Gem State.</p>
-            </div>
-            <!-- Link 4: US Env Law Overview -->
-            <div class="space-y-4">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/2njn71TqkjA" title="Environmental Law Principles" allowfullscreen></iframe>
-                </div>
-                <h4 class="font-bold text-xl text-[#1E3A8A]">4. US Environmental Principles</h4>
-                <p class="text-sm text-slate-500">Academic overview of the legal structures governing natural resources.</p>
-            </div>
-        </div>
-    </section>
+    <script>
+        lucide.createIcons();
 
-</main>
+        // Label wrap utility
+        function wrapLabels(labels) {
+            return labels.map(label => {
+                if (typeof label !== 'string' || label.length <= 16) return label;
+                const words = label.split(' ');
+                const result = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        result.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                });
+                result.push(currentLine.trim());
+                return result;
+            });
+        }
 
-<footer class="bg-slate-900 text-slate-400 py-16 px-6 mt-12 border-t-8 border-[#F59E0B]">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-        <div>
-            <h5 class="text-white font-black text-2xl tracking-tighter">IIS MENDEL - Villa Cortese</h5>
-            <p class="text-sm mt-1">English for Agricultural Purposes (ESP) Hub</p>
-            <p class="text-xs text-slate-600 mt-4">Educational content curated by Prof. Crespi and Prof. Hampton</p>
-        </div>
-        <div class="text-xs text-center md:text-right max-w-sm">
-            <p class="mb-2">This SPA utilizes Chart.js and Tailwind CSS for interactive data visualization. No external assets or SVG dependencies were used.</p>
-            <p>&copy; 2026 Educational Unit on Environmental Legislation.</p>
-        </div>
-    </div>
-</footer>
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
 
-<script>
-    // Label wrap utility (16 char limit)
-    function wrapLabels(labels) {
-        return labels.map(label => {
-            if (typeof label !== 'string' || label.length <= 16) return label;
-            const words = label.split(' ');
-            const result = [];
-            let currentLine = '';
-            words.forEach(word => {
-                if ((currentLine + word).length > 16) {
-                    result.push(currentLine.trim());
-                    currentLine = word + ' ';
-                } else {
-                    currentLine += word + ' ';
+        // Tab System
+        function switchTab(tabId) {
+            ['mgt', 'brd', 'welf', 'pdo'].forEach(t => {
+                document.getElementById(`btn-${t}`).classList.remove('tab-active');
+                document.getElementById(`btn-${t}`).classList.add('text-slate-500');
+                document.getElementById(`pane-${t}`).classList.add('hidden');
+            });
+            document.getElementById(`btn-${tabId}`).classList.add('tab-active');
+            document.getElementById(`btn-${tabId}`).classList.remove('text-slate-500');
+            document.getElementById(`pane-${tabId}`).classList.remove('hidden');
+        }
+
+        // Charts
+        let compChart;
+        const metrics = {
+            herd: { label: 'Avg Adult Cows / Farm', data: [1500, 240], colors: ['#3b82f6', '#10b981'] },
+            density: { label: 'Livestock Density (Units/ha)', data: [1.8, 4.8], colors: ['#3b82f6', '#10b981'] }
+        };
+
+        function init() {
+            // Radar
+            new Chart(document.getElementById('radarLaws'), {
+                type: 'radar',
+                data: {
+                    labels: wrapLabels(['Clean Air Act', 'Clean Water Act', 'Endangered Species', 'Pesticide Safety', 'NEPA Assessment']),
+                    datasets: [{
+                        label: 'Intensity',
+                        data: [8, 10, 9, 7, 6],
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderColor: '#F59E0B',
+                        pointBackgroundColor: '#F59E0B'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { grid: { color: '#334155' }, pointLabels: { color: '#94a3b8' }, ticks: { display: false } } },
+                    plugins: { legend: { display: false } }
                 }
             });
-            result.push(currentLine.trim());
-            return result;
-        });
-    }
 
-    // Tooltip Config
-    const tooltipConfig = {
-        callbacks: {
-            title: function(tooltipItems) {
-                const item = tooltipItems[0];
-                let label = item.chart.data.labels[item.dataIndex];
-                return Array.isArray(label) ? label.join(' ') : label;
-            }
+            // Bar Chart (Emissions from index (2).html)
+            new Chart(document.getElementById('emissionsBar'), {
+                type: 'bar',
+                data: {
+                    labels: wrapLabels(['Soil Management (Nitrous Oxide)', 'Enteric Fermentation (Methane)', 'Manure Management Systems', 'Rice Paddy Cultivation', 'Other Ag Processes']),
+                    datasets: [{
+                        label: '% share of total Agricultural GHG',
+                        data: [50, 27, 14, 3, 6],
+                        backgroundColor: '#1E3A8A',
+                        borderRadius: 12,
+                        hoverBackgroundColor: '#10B981'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { callback: v => v + '%' } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { tooltip: tooltipConfig, legend: { display: false } }
+                }
+            });
+
+            // Comparison Bar
+            const ctxComp = document.getElementById('comparisonChart').getContext('2d');
+            compChart = new Chart(ctxComp, {
+                type: 'bar',
+                data: {
+                    labels: ['Idaho (USA)', 'Lombardy (ITA)'],
+                    datasets: [{
+                        label: metrics.herd.label,
+                        data: metrics.herd.data,
+                        backgroundColor: metrics.herd.colors,
+                        borderRadius: 8,
+                        barThickness: 50
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
         }
-    };
 
-    // Radar Chart
-    new Chart(document.getElementById('radarLaws'), {
-        type: 'radar',
-        data: {
-            labels: wrapLabels(['Clean Air Act Enforcement', 'Clean Water Act Compliance', 'Endangered Species Rules', 'Pesticide Safety (FIFRA)', 'NEPA Assessments']),
-            datasets: [{
-                label: 'Intensity Index',
-                data: [8, 10, 9, 7, 6],
-                backgroundColor: 'rgba(30, 58, 138, 0.1)',
-                borderColor: '#1E3A8A',
-                pointBackgroundColor: '#1E3A8A',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { r: { min: 0, max: 10, ticks: { display: false } } },
-            plugins: { tooltip: tooltipConfig, legend: { display: false } }
+        function updateComparisonChart() {
+            const val = document.getElementById('metric-select').value;
+            const m = metrics[val];
+            compChart.data.datasets[0].data = m.data;
+            compChart.data.datasets[0].label = m.label;
+            compChart.update();
         }
-    });
 
-    // Idaho Pie
-    new Chart(document.getElementById('idahoDoughnut'), {
-        type: 'doughnut',
-        data: {
-            labels: wrapLabels(['Federal Managed Land', 'Private Farm Land', 'State of Idaho Properties', 'Tribal Territories']),
-            datasets: [{
-                data: [61.6, 31.2, 5.2, 2.0],
-                backgroundColor: ['#1E3A8A', '#FFFFFF', '#F59E0B', '#EF4444'],
-                hoverOffset: 20,
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom', labels: { color: '#ffffff', padding: 25, font: { weight: 'bold' } } },
-                tooltip: tooltipConfig
-            }
-        }
-    });
-
-    // Bar Chart
-    new Chart(document.getElementById('emissionsBar'), {
-        type: 'bar',
-        data: {
-            labels: wrapLabels(['Soil Management (Nitrous Oxide)', 'Enteric Fermentation (Methane)', 'Manure Management Systems', 'Rice Paddy Cultivation', 'Other Ag Processes']),
-            datasets: [{
-                label: '% share of total Agricultural GHG',
-                data: [50, 27, 14, 3, 6],
-                backgroundColor: '#1E3A8A',
-                borderRadius: 12,
-                hoverBackgroundColor: '#10B981'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { callback: v => v + '%' } },
-                x: { grid: { display: false } }
-            },
-            plugins: { tooltip: tooltipConfig, legend: { display: false } }
-        }
-    });
-</script>
-
+        window.onload = init;
+    </script>
 </body>
 </html>
-
-
